@@ -1,0 +1,309 @@
+/* WARM PALET (29 okt): ivoor, goud, koper, bruin. Rood = actiekleur en een blokje. Oranje = klein accent.
+   Let op: de variabelenamen --zee en --zee-diep zijn uit de eerste versie behouden.
+   --zee = heldere rood (knoppen, pijlen), --zee-diep = donkerbruin (koppen).
+   30 okt: lijnen onder koppen, voortgangsbalk bovenin en streepjeslijsten weggehaald (feedback Giorgio).
+   31 okt: geen losse laatste woorden meer op een eigen regel (text-wrap pretty en balance).
+   31 okt: tekst die onder een foto-sectie hoort begint op dezelfde lijn als de foto (.wrap met .kolom).
+   1 nov: nieuwe opbouw voor ondernemers. Menu: Voor jezelf, Voor ondernemers, Over Jannie, Ervaringen, Vragen.
+   1 nov: SEO en GEO voorbereid (meta, gestructureerde data, in het kort, veelgestelde vragen). Staat nog op noindex.
+   2 nov: elf punten feedback verwerkt. Rustiger hero (minder lettertypen), dubbele titels weg, klantreis-volgorde:
+          hero, twee deuren, waarom Jannie, over Jannie (gave), voor ondernemers, voor jezelf, mijn weg en natuur,
+          ervaringen (slider), verwachting, consult en tarieven, goed om te weten, in het kort, vragen, herkenning, contact.
+          Interview tijdelijk weggehaald (video nog niet beschikbaar). Zie back-up voor de versie van 1 nov. */
+:root{
+  --ivoor:#FBF6EC;
+  --mist:#F3E9DA;
+  --zee:#B2302B;
+  --rood-diep:#8E2420;
+  --zee-diep:#4A3025;
+  --zee-licht:#D9A58A;
+  --goud:#B08D4F;
+  --goud-licht:#E3CB93;
+  --goud-tekst:#8A6528;
+  --koper:#A85D31;
+  --oranje:#D9822B;
+  --bruin:#5C3F33;
+  --inkt:#33261F;
+  --zacht:#6E5E54;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--ivoor);color:var(--inkt);font-family:'Jost',sans-serif;font-weight:300;font-size:1.04rem;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:500;line-height:1.15;color:var(--zee-diep);text-wrap:balance}
+h1{font-size:clamp(2.6rem,6vw,4.6rem);letter-spacing:.01em;white-space:nowrap}
+h2{font-size:clamp(1.9rem,8vw,2.4rem);margin-bottom:1.6rem}
+h3{font-size:clamp(1.45rem,2.4vw,1.8rem);margin-bottom:.8rem}
+p{margin-bottom:1.05rem;text-wrap:pretty}
+.lead,.quote,.kop2,.review blockquote,.review .verhaal.slot{text-wrap:balance}
+strong{font-weight:500;color:var(--zee-diep)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.narrow{max-width:800px;margin:0 auto;padding:0 24px}
+/* smalle tekstkolom die links op dezelfde lijn begint als de foto's en kopjes erboven en eronder */
+.kolom{max-width:800px}
+section{position:relative}
+.pad{padding:80px 0}
+.skip{position:absolute;left:-9999px;top:8px;background:#fff;color:var(--zee-diep);padding:10px 16px;z-index:100}
+.skip:focus{left:16px}
+.eyebrow{font-size:.76rem;letter-spacing:.28em;text-transform:uppercase;color:var(--goud-tekst);font-weight:400;margin-bottom:1rem;display:block}
+.eyebrow::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--oranje);margin-right:12px;vertical-align:middle;position:relative;top:-1px}
+.lead{font-family:'Cormorant Garamond',serif;font-size:clamp(1.35rem,2.3vw,1.7rem);line-height:1.35;color:var(--zee-diep);font-weight:500;margin:1.4rem 0}
+.quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.4rem,2.5vw,1.9rem);line-height:1.35;color:var(--zee-diep);padding:0;margin:2rem 0 0}
+.quote small{display:block;font-family:'Jost',sans-serif;font-style:normal;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--koper);margin-top:.8rem;line-height:1.7}
+.btn{display:inline-block;white-space:nowrap;background:var(--zee);color:#fff;text-decoration:none;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:400;padding:16px 30px;border:1px solid var(--zee);transition:background .3s,color .3s,border-color .3s}
+.btn:hover{background:var(--rood-diep);border-color:var(--rood-diep)}
+.btn.licht{background:#fff;color:var(--zee-diep);border-color:#fff}
+.btn.licht:hover{background:var(--goud-licht);border-color:var(--goud-licht)}
+.btn.uit{background:transparent;color:var(--zee-diep);border-color:var(--goud)}
+.btn.uit:hover{background:var(--goud-licht);border-color:var(--goud-licht);color:var(--zee-diep)}
+.cta{margin-top:1.6rem}
+.rij{display:flex;flex-wrap:wrap;gap:14px;margin-top:1.6rem}
+.meta{font-size:.9rem;color:var(--zacht);margin-top:1rem;letter-spacing:.04em}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:14px 28px;background:linear-gradient(to bottom,rgba(251,246,236,.96),rgba(251,246,236,0));transition:background .3s}
+nav.vast{background:rgba(251,246,236,.97)}
+nav .naam{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--zee-diep);text-decoration:none;letter-spacing:.03em;white-space:nowrap}
+nav .links{display:flex;gap:28px;margin-left:auto}
+nav .links a{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--zee-diep);text-decoration:none;white-space:nowrap;transition:color .3s}
+nav .links a:hover{color:var(--zee)}
+nav .btn{padding:10px 20px;font-size:.7rem}
+
+.foto{position:relative;overflow:hidden}
+.foto img{width:100%;height:100%;object-fit:cover}
+/* fade-r: foto staat links, vervaagt naar rechts (naar de tekst). fade-l: foto staat rechts, vervaagt naar links (naar de tekst). */
+.fade-r{-webkit-mask-image:linear-gradient(to right,#000 62%,transparent 100%);mask-image:linear-gradient(to right,#000 62%,transparent 100%)}
+.fade-l{-webkit-mask-image:linear-gradient(to left,#000 62%,transparent 100%);mask-image:linear-gradient(to left,#000 62%,transparent 100%)}
+
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;position:relative;background:linear-gradient(135deg,#FFFAF0 0%,#FBF1DF 55%,#F4E4C8 100%)}
+.hero .tekst{padding:104px 24px 96px max(24px,calc((100vw - 1120px)/2 + 24px))}
+.hero .tekst>*{max-width:540px}
+/* 2 nov: eyebrow en subregel zijn nu één stijl; kop2 en lead zijn even groot (minder lettertypen) */
+.hero .sub{font-size:.76rem;letter-spacing:.28em;text-transform:uppercase;color:var(--goud-tekst);margin:.9rem 0 1.6rem;display:block}
+.hero .kop2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.3rem,2.2vw,1.65rem);line-height:1.3;color:var(--koper);margin-bottom:.6rem}
+.hero .lead{margin:.2rem 0 1.2rem;font-size:clamp(1.3rem,2.2vw,1.65rem)}
+.hero .foto{height:100vh;min-height:600px}
+.hero .foto img{object-position:50% 30%}
+.cue{position:absolute;bottom:26px;left:max(24px,calc((100vw - 1120px)/2 + 24px));display:flex;align-items:center;gap:14px;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--goud-tekst);text-decoration:none}
+.cue i{display:block;width:1px;height:42px;background:linear-gradient(to bottom,var(--oranje),transparent);transform-origin:top;animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%{transform:scaleY(0);opacity:0}40%{opacity:1}100%{transform:scaleY(1);opacity:0}}
+
+/* Standaard: foto links (smal), tekst rechts (breed). */
+.split{display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:center}
+/* Tekst links (breed), foto rechts (smal). */
+.split.tekst-l{grid-template-columns:1.3fr 1fr}
+.split .foto{height:560px}
+.split .foto.hoog{height:700px}
+.split h2{font-size:clamp(1.5rem,2.5vw,2.1rem);white-space:nowrap}
+.split .tekstkolom{min-width:0}
+/* Gelijk: de foto is even hoog als de tekstkolom ernaast (Healing). */
+.split.gelijk{align-items:stretch}
+.split.gelijk .foto{height:auto;min-height:420px}
+.split.gelijk .foto img{position:absolute;top:0;left:0;width:100%;height:100%}
+/* Eén regel onder de tekst, links op dezelfde lijn als de foto (Healing). */
+.slotzin{text-align:left;margin-top:1.4rem}
+.slotzin .lead{margin:0;font-family:'Jost',sans-serif;font-size:.85rem;font-weight:300;line-height:1.5;letter-spacing:.02em;color:var(--zacht)}
+
+@media(min-width:901px){
+  h2{white-space:nowrap;font-size:clamp(1.9rem,3vw,2.4rem)}
+  .split h2{font-size:clamp(1.5rem,2.5vw,2.1rem)}
+  h3.een{white-space:nowrap}
+}
+/* 2 nov: 'Mijn terrein begint waar de beschikbare feiten ophouden.' altijd op één regel (desktop) */
+.lead.een-regel{font-size:clamp(1.25rem,2.05vw,1.6rem)}
+@media(min-width:1024px){.lead.een-regel{white-space:nowrap}}
+
+.mist{background:var(--mist)}
+.diep{background:linear-gradient(160deg,#6A4A3B 0%,#5C3F33 55%,#4B3329 100%);color:#F6EDE3}
+.diep h2,.diep h3,.diep strong{color:#fff}
+.diep .eyebrow{color:var(--goud-licht)}
+/* 2 nov: lichte zin op de bruine achtergrond, zwart was niet leesbaar */
+.diep .lead{color:var(--goud-licht)}
+.rood{background:linear-gradient(160deg,#BC352F 0%,#B2302B 55%,#9C2A25 100%);color:#FFF1E8}
+.rood h2,.rood h3,.rood strong{color:#fff}
+.rood .eyebrow{color:#FFE3B5}
+.bruin{background:var(--bruin);color:#F3EBE4}
+.bruin h2,.bruin h3,.bruin strong{color:#fff}
+.bruin .eyebrow{color:var(--goud-licht)}
+
+.review{background:#fff;border:1px solid rgba(176,141,79,.4);border-top:2px solid var(--goud);padding:30px 28px}
+.review blockquote{font-family:'Cormorant Garamond',serif;font-size:1.4rem;line-height:1.4;color:var(--zee-diep);margin-bottom:1rem}
+.review cite{font-style:normal;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--koper)}
+.review.breed{padding:36px 34px}
+.review.breed blockquote{font-size:clamp(1.5rem,2.6vw,1.9rem);margin-bottom:1.2rem}
+.review .verhaal{font-size:1rem;line-height:1.7;margin-bottom:.9rem}
+.review .verhaal.slot{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;line-height:1.4;color:var(--zee-diep);margin:1.3rem 0 1.4rem}
+.review.breed cite{line-height:1.8}
+
+/* ===== slider voor ervaringen (2 nov) ===== */
+.slides{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.slides::-webkit-scrollbar{display:none}
+.slides:focus-visible{outline:2px solid var(--oranje);outline-offset:4px}
+.slide{flex:0 0 100%;scroll-snap-align:start;display:flex}
+.slide .review{width:100%}
+.sliderbed{display:flex;align-items:center;gap:14px;margin-top:20px}
+.sl-knop{background:none;border:1px solid var(--goud);color:var(--zee-diep);width:44px;height:44px;font-size:1.1rem;line-height:1;cursor:pointer;transition:background .3s}
+.sl-knop:hover:not(:disabled){background:var(--goud-licht)}
+.sl-knop:disabled{opacity:.35;cursor:default}
+.sl-knop:focus-visible,.stippen button:focus-visible{outline:2px solid var(--oranje);outline-offset:3px}
+.stippen{display:flex;gap:12px;margin-left:6px}
+.stippen button{width:12px;height:12px;border-radius:50%;border:1px solid var(--goud);background:transparent;padding:0;cursor:pointer}
+.stippen button[aria-current="true"]{background:var(--oranje);border-color:var(--oranje)}
+
+.video{aspect-ratio:16/9;border:1px dashed rgba(176,141,79,.7);background:rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;text-align:center;color:var(--zacht);font-style:italic;padding:24px;margin-top:1.6rem}
+
+.tarieven{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:2rem 0}
+.tarief{padding:36px 32px;background:#fff;border-top:3px solid var(--koper);box-shadow:0 8px 24px rgba(92,63,51,.06)}
+.tarief.zakelijk{background:linear-gradient(160deg,#6A4A3B 0%,#5C3F33 60%,#4B3329 100%);color:#F6EDE3;border-top-color:var(--goud)}
+.tarief.zakelijk h3,.tarief.zakelijk .prijs{color:#fff}
+.prijs{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--koper);margin-bottom:.9rem}
+.prijs b{font-size:2.3rem;font-weight:500}
+.tarief .incl{font-size:.93rem;font-weight:400;margin-bottom:.9rem}
+.kor{font-size:.85rem;font-style:italic;color:var(--zacht)}
+/* 2 nov: KOR-zin op één regel (desktop) */
+@media(min-width:1000px){.kor.een-regel{white-space:nowrap}}
+
+.formwrap{background:#fff;border:1px solid rgba(176,141,79,.4);border-top:3px solid var(--koper);padding:26px;margin-top:1.4rem}
+footer{background:linear-gradient(160deg,#5C3F33 0%,#4B3329 100%);color:#F3EBE4;padding:56px 0;font-size:.95rem;border-top:3px solid var(--goud)}
+footer .naam{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:#fff;display:block}
+footer .rol{letter-spacing:.2em;text-transform:uppercase;font-size:.75rem;color:var(--goud-licht);margin-bottom:1.2rem;display:block}
+footer p{margin-bottom:.3rem}
+footer .voet{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:1.6rem}
+footer .voet a{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--goud-licht);text-decoration:none}
+footer .voet a:hover{color:#fff}
+
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.js .reveal.zichtbaar{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .pad{padding:56px 0}
+  h1{white-space:normal}
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero .foto{order:-1;height:58vh;min-height:380px}
+  .hero .foto.fade-l{-webkit-mask-image:linear-gradient(to bottom,#000 65%,transparent 100%);mask-image:linear-gradient(to bottom,#000 65%,transparent 100%)}
+  .hero .tekst{padding:0 24px 56px}
+  .cue{display:none}
+  .split,.split.tekst-l{grid-template-columns:1fr;gap:24px}
+  .split .foto,.split .foto.hoog,.split.gelijk .foto{height:380px;min-height:0}
+  .split h2{white-space:normal;font-size:clamp(1.7rem,7vw,2.1rem)}
+  /* mobiel: foto staat boven de tekst, vervaagt naar beneden */
+  .fade-r,.fade-l{-webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent 100%);mask-image:linear-gradient(to bottom,#000 62%,transparent 100%)}
+  .foto-na{order:2}
+  .slotzin{margin-top:1.4rem}
+  .tarieven{grid-template-columns:1fr}
+  .review.breed{padding:28px 22px}
+}
+@media(prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.cue i{animation:none}}
+
+/* ===== uitklapmenu in de navigatie (vanaf 1180px breed volledig menu) ===== */
+.menuknop{display:none;background:none;border:1px solid rgba(176,141,79,.7);color:var(--zee-diep);font-family:'Jost',sans-serif;font-size:.7rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;padding:9px 14px;line-height:1.4;cursor:pointer}
+.menuknop:focus-visible,.deur:focus-visible,.faq summary:focus-visible,.mobmenu a:focus-visible{outline:2px solid var(--oranje);outline-offset:3px}
+.mobmenu{display:none;position:absolute;top:100%;left:0;right:0;background:rgba(251,246,236,.99);box-shadow:0 14px 24px rgba(74,48,37,.1);padding:6px 20px 22px;max-height:calc(100vh - 62px);overflow-y:auto}
+.mobmenu a{display:block;font-family:'Cormorant Garamond',serif;font-size:1.3rem;line-height:1.3;color:var(--zee-diep);text-decoration:none;padding:12px 0}
+.mobmenu a:hover{color:var(--zee)}
+.mobmenu a.btn{font-family:'Jost',sans-serif;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;text-align:center;margin:18px 0 0;padding:16px 20px;border:1px solid var(--zee)}
+nav.open{background:rgba(251,246,236,.99)}
+@media(max-width:1180px){
+  nav{padding:10px 16px}
+  nav .naam{font-size:1.15rem}
+  nav .links{display:none}
+  nav>.btn{margin-left:auto;padding:9px 16px;font-size:.66rem}
+  .menuknop{display:inline-block}
+  nav.open .mobmenu{display:block}
+}
+@media(max-width:560px){
+  nav>.btn{display:none}
+  .menuknop{margin-left:auto}
+}
+
+.meta a{color:var(--zee);text-underline-offset:4px}
+
+/* ===== twee deuren direct onder de hero ===== */
+.deuren{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:2rem}
+.deur{display:flex;flex-direction:column;gap:.5rem;padding:34px 32px 30px;text-decoration:none;color:inherit;background:#fff;border:1px solid rgba(176,141,79,.4);border-top:3px solid var(--koper);transition:transform .3s,box-shadow .3s}
+.deur:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(92,63,51,.14)}
+.deur .vraag{font-size:.7rem;letter-spacing:.24em;text-transform:uppercase;color:var(--koper)}
+.deur h3{font-size:1.9rem;margin:0}
+.deur p{margin:0;color:var(--zacht);font-size:1rem;line-height:1.6}
+.deur .prijs-regel{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--koper);margin-top:.4rem}
+.deur .pijl{margin-top:auto;padding-top:.8rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--zee)}
+.deur.zakelijk{background:linear-gradient(160deg,#6A4A3B 0%,#5C3F33 60%,#4B3329 100%);color:#F6EDE3;border-top-color:var(--goud)}
+.deur.zakelijk h3,.deur.zakelijk .prijs-regel{color:#fff}
+.deur.zakelijk .vraag,.deur.zakelijk .pijl{color:var(--goud-licht)}
+.deur.zakelijk p{color:#F0E4D8}
+
+/* ===== in het kort ===== */
+.kort{display:grid;grid-template-columns:1fr 1fr;gap:0 48px;margin-top:1.4rem}
+.kort div{padding:14px 0;border-bottom:1px solid rgba(176,141,79,.4)}
+.kort dt{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--koper);margin-bottom:.15rem}
+.kort dd{margin:0;color:var(--inkt);line-height:1.55}
+
+/* ===== waarom Jannie ===== */
+.pijlers{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:2rem}
+.pijler{background:#fff;border:1px solid rgba(176,141,79,.4);border-top:3px solid var(--koper);padding:28px 28px 22px}
+.pijler h3{font-size:1.55rem;margin-bottom:.5rem}
+.pijler p{margin:0;font-size:.98rem;line-height:1.6}
+
+/* ===== zakelijke momenten: gewone lijst met bullets, geen blokjes meer (2 nov) ===== */
+.punten{display:grid;grid-template-columns:1fr 1fr;gap:6px 40px;margin:1.2rem 0 0;list-style:none}
+.punten li{padding:6px 0;font-size:1rem;line-height:1.45;display:flex;gap:12px;align-items:flex-start}
+.punten li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--oranje);margin-top:.55em}
+
+/* ===== zo werkt het ===== */
+.stappen{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:2rem;list-style:none;counter-reset:st}
+.stappen li{background:#fff;border:1px solid rgba(176,141,79,.4);border-top:3px solid var(--koper);padding:22px 18px;counter-increment:st}
+.stappen li::before{content:counter(st);display:block;font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--koper);line-height:1;margin-bottom:.5rem}
+.stappen h3{font-size:1.2rem;margin-bottom:.4rem}
+.stappen p{font-size:.9rem;line-height:1.55;margin:0}
+
+@media(max-width:1000px){
+  .stappen{grid-template-columns:1fr 1fr}
+  .stappen li:last-child{grid-column:1/-1}
+}
+@media(max-width:900px){
+  .deuren,.pijlers,.kort{grid-template-columns:1fr}
+  .kort{gap:0}
+  .deur{padding:26px 24px 24px}
+}
+@media(max-width:600px){
+  .punten,.stappen{grid-template-columns:1fr}
+  .stappen li:last-child{grid-column:auto}
+  .rij .btn{flex:1 1 100%;text-align:center}
+}
+
+/* ===== veelgestelde vragen als uitklaplijst ===== */
+.faq details{margin:0;border-bottom:1px solid rgba(176,141,79,.4)}
+.faq details:first-of-type{border-top:1px solid rgba(176,141,79,.4)}
+.faq details summary{list-style:none;cursor:pointer;display:flex;width:100%;justify-content:space-between;align-items:center;gap:20px;font-family:'Cormorant Garamond',serif;font-size:1.35rem;line-height:1.3;letter-spacing:0;text-transform:none;color:var(--zee-diep);padding:18px 0}
+.faq details summary::-webkit-details-marker{display:none}
+.faq details summary::after{content:"+";flex:none;font-family:'Jost',sans-serif;font-size:1.4rem;color:var(--koper)}
+.faq details[open] summary::after{content:"\2212"}
+.faq details .binnen{padding:0 0 1.2rem}
+.faq details .binnen p{font-size:1rem;margin-bottom:.8rem}
+@media(max-width:600px){.faq details summary{font-size:1.2rem}}
+.verschil{margin-top:48px}
+.verschil h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.7rem;margin-bottom:.6rem}
+.verschil .vgrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}
+.verschil .vkaart{background:#fff;padding:26px 28px;border-top:3px solid var(--koper)}
+.verschil .vkaart.zk{border-top-color:var(--goud)}
+.verschil .vkaart h4{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:1.35rem;margin-bottom:.5rem}
+.verschil .vkaart ul{margin:0;padding-left:1.1rem}
+.verschil .vkaart li{margin-bottom:.45rem}
+@media(max-width:760px){.verschil .vgrid{grid-template-columns:1fr}}
+.diep .btn.uit{color:#fff;border-color:var(--goud-licht)}
+.diep .btn.uit:hover{background:var(--goud-licht);border-color:var(--goud-licht);color:var(--zee-diep)}
+.diep .meta{color:#E9DDD0}
+.diep .meta a{color:var(--goud-licht)}
+.diep .quote{color:#fff}
+.diep .quote small{color:var(--goud-licht)}
+.meer{display:inline-block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--goud-licht);transition:color .3s}
+.meer:hover{color:#fff}
+.citaat-band{background:var(--ivoor)}
+.citaat-band.pad{padding:56px 0}
+.citaat-band .meer{color:var(--koper)}
+.citaat-band .meer:hover{color:var(--zee)}
+.scrollknoppen{position:fixed;right:16px;bottom:18px;z-index:40;display:flex;flex-direction:column;gap:8px}
+.scrollknoppen button{width:38px;height:38px;border:1px solid var(--goud);background:rgba(251,246,236,.88);color:var(--zee-diep);font-family:'Jost',sans-serif;font-size:1rem;line-height:1;cursor:pointer;opacity:.7;transition:opacity .3s,background .3s}
+.scrollknoppen button:hover{opacity:1;background:var(--goud-licht)}
+.scrollknoppen button:focus-visible{outline:2px solid var(--oranje);outline-offset:3px;opacity:1}
+.scrollknoppen button[hidden]{display:none}
+@media print{.scrollknoppen{display:none}}
