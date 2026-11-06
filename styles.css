@@ -77,10 +77,11 @@ nav .btn{padding:10px 20px;font-size:.7rem}
 .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;position:relative;background:linear-gradient(135deg,#FFFAF0 0%,#FBF1DF 55%,#F4E4C8 100%)}
 .hero .tekst{padding:104px 24px 96px max(24px,calc((100vw - 1120px)/2 + 24px))}
 .hero .tekst>*{max-width:540px}
-/* 2 nov: eyebrow en subregel zijn nu één stijl; kop2 en lead zijn even groot (minder lettertypen) */
+/* 2 nov: eyebrow en subregel zijn nu één stijl; kop2 en lead zijn even groot (minder lettertypen); lead heeft nu body font */
 .hero .sub{font-size:.76rem;letter-spacing:.28em;text-transform:uppercase;color:var(--goud-tekst);margin:.9rem 0 1.6rem;display:block}
 .hero .kop2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.3rem,2.2vw,1.65rem);line-height:1.3;color:var(--koper);margin-bottom:.6rem}
-.hero .lead{margin:.2rem 0 1.2rem;font-size:clamp(1.3rem,2.2vw,1.65rem)}
+.hero .lead{margin:.2rem 0 1.05rem;font-family:'Jost',sans-serif;font-weight:300;font-size:1.04rem;line-height:1.75;text-wrap:pretty}
+.hero .tekst p:not(.kop2){font-family:'Jost',sans-serif;font-weight:300;font-size:1.04rem;line-height:1.75;font-style:normal}
 .hero .foto{height:100vh;min-height:600px}
 .hero .foto img{object-position:50% 30%}
 .cue{position:absolute;bottom:26px;left:max(24px,calc((100vw - 1120px)/2 + 24px));display:flex;align-items:center;gap:14px;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--goud-tekst);text-decoration:none}
@@ -171,6 +172,10 @@ footer .voet{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:1.6rem}
 footer .voet a{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--goud-licht);text-decoration:none}
 footer .voet a:hover{color:#fff}
 
+/* 4 nov: Healer toegevoegd aan het rijtje. Items breken als blok af, zodat een los woord of losse punt nooit alleen op een regel staat. */
+.eyebrow .ew{display:inline-block}
+.hero .eyebrow{text-wrap:balance}
+
 .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
 .js .reveal.zichtbaar{opacity:1;transform:none}
 
@@ -192,7 +197,28 @@ footer .voet a:hover{color:#fff}
   .tarieven{grid-template-columns:1fr}
   .review.breed{padding:28px 22px}
 }
+
 @media(prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.cue i{animation:none}}
+
+/* 3 nov: mobiel opgeschoond: foto's over de volle breedte en altijd boven de tekst, geen ingesprongen foto's, scrollknoppen niet over de knoppen heen */
+@media(max-width:900px){
+  .split{gap:18px}
+  .split .foto,.split .foto.hoog,.split.gelijk .foto{order:-1;margin-left:-24px;margin-right:-24px;height:400px;min-height:0}
+  .fade-r,.fade-l{-webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent 100%);mask-image:linear-gradient(to bottom,#000 70%,transparent 100%)}
+  .tarief{padding:28px 22px}
+  .formwrap{padding:18px}
+  .review.breed blockquote{font-size:1.5rem}
+  .scrollknoppen{display:none!important}
+}
+@media(max-width:600px){
+  .hero .foto{height:62vh;min-height:400px}
+  .hero .tekst{padding:0 22px 56px}
+  nav{padding:10px 22px!important}
+  .pad{padding:48px 0}
+  .wrap,.narrow{padding-left:22px;padding-right:22px}
+  .split .foto,.split .foto.hoog,.split.gelijk .foto{margin-left:-22px;margin-right:-22px;height:360px}
+  .deur{padding:24px 20px 22px!important}
+}
 
 /* ===== uitklapmenu in de navigatie (vanaf 1180px breed volledig menu) ===== */
 .menuknop{display:none;background:none;border:1px solid rgba(176,141,79,.7);color:var(--zee-diep);font-family:'Jost',sans-serif;font-size:.7rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;padding:9px 14px;line-height:1.4;cursor:pointer}
@@ -307,3 +333,233 @@ nav.open{background:rgba(251,246,236,.99)}
 .scrollknoppen button:focus-visible{outline:2px solid var(--oranje);outline-offset:3px;opacity:1}
 .scrollknoppen button[hidden]{display:none}
 @media print{.scrollknoppen{display:none}}
+
+/* 3 nov (2): uitlijning mobiel. Alle tekst op dezelfde lijn, kaarten over de volle breedte, geen horizontale overflow, kop-balk dekkend */
+html,body{overflow-x:hidden;max-width:100%}
+@supports(overflow:clip){html,body{overflow-x:clip}}
+main,section,footer{overflow-x:clip}
+iframe,embed,video{max-width:100%!important}
+.formwrap{overflow:hidden}
+nav.vast,nav.open{background:#FBF6EC!important}
+@media(max-width:900px){
+  .eyebrow{position:relative}
+  .eyebrow::before{position:absolute;left:-17px;top:calc(.875em - 3.5px);margin:0!important}
+}
+@media(max-width:600px){
+  .deur,.pijler,.tarief,.stappen li,.verschil .vkaart{margin-left:-22px!important;margin-right:-22px!important;border-left:0!important;border-right:0!important;padding-left:22px!important;padding-right:22px!important;box-shadow:none!important}
+  .deur:hover{transform:none!important}
+  .slider{margin-left:-22px;margin-right:-22px}
+  .review.breed{border-left:0;border-right:0;padding:26px 22px}
+  .sliderbed{padding-left:22px}
+}
+
+/* 3 nov (3): robuustheid over browsers en versies. Geen zichtbare wijziging op moderne toestellen. */
+:root{color-scheme:light}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.menuknop,.sl-knop,.scrollknoppen button{-webkit-appearance:none;appearance:none;border-radius:0}
+@supports(height:100svh){
+  .mobmenu{max-height:calc(100svh - 62px)}
+}
+@media(min-width:901px){
+  .hero .tekst{padding-left:max(24px,calc((var(--vw,100vw) - 1120px)/2 + 24px))}
+  .cue{left:max(24px,calc((var(--vw,100vw) - 1120px)/2 + 24px))}
+}
+
+/* 3 nov (4): iPhone Safari. Knoppen mogen op smalle schermen afbreken, zodat de pagina nooit breder wordt dan het scherm. */
+@media(max-width:600px){
+  .btn{white-space:normal!important;max-width:100%;text-align:center;line-height:1.5}
+  .cta .btn,.rij .btn{box-sizing:border-box}
+}
+
+/* 4 nov: mobiele controle na feedback Giorgio.
+   Hero subregel op één regel en even zwaar als de eyebrow. Overgang hero naar de deuren zonder harde rand.
+   De vraag Waar ben je naar op zoek is nu een echte kop. Links breken niet meer midden in de link af.
+   Grids krijgen minmax(0,1fr) zodat een brede knop een kolom nooit breder dan het scherm maakt. */
+.hero .sub{font-weight:400}
+.hero .sub .mb{display:none}
+#kiezen h2{margin-bottom:0}
+.meta a{white-space:nowrap}
+.meta .los{display:inline-block}
+.meta.sprong{display:flex;flex-wrap:wrap;gap:4px 22px}
+@media(max-width:900px){
+  .hero{background:linear-gradient(180deg,#FFFAF0 0%,#FBF1DF 55%,#F3E9DA 100%)}
+  .tarieven,.deuren,.pijlers,.kort{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:1000px){.stappen{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.verschil .vgrid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){
+  .hero .sub{white-space:nowrap;font-size:min(.76rem,3.3vw)}
+  .hero .sub .dk{display:none}
+  .hero .sub .mb{display:inline}
+  .hero .tekst{padding-bottom:64px}
+  .deur .vraag{letter-spacing:.18em;text-wrap:balance}
+  .stappen,.punten{grid-template-columns:minmax(0,1fr)}
+}
+@media(min-width:901px){
+  .hero{background:linear-gradient(to bottom,rgba(243,233,218,0) 82%,#F3E9DA 100%),linear-gradient(135deg,#FFFAF0 0%,#FBF1DF 55%,#F4E4C8 100%)}
+}
+/* 4 nov: subregel Delfzijl uit de hero gehaald, die info staat bij de afspraak en in het kort. Ruimte onder de naam hersteld. */
+.hero h1{margin-bottom:1.4rem}
+/* 4 nov: de zin Mijn kracht zit in de zuiverheid in de hero: zelfde lettertype als de body (Jost), iets groter en zwaarder. */
+.hero .lead{font-family:'Jost',sans-serif;font-weight:500;font-size:1.2rem;line-height:1.55;font-style:normal;color:var(--zee-diep);margin:.4rem 0 1.2rem}
+/* 4 nov (2): hero-zin Mijn kracht zit in de zuiverheid: Jost zoals de body, iets groter en zwaarder. */
+.hero .tekst p.lead.reveal{font-family:'Jost',sans-serif;font-weight:500;font-size:1.2rem;line-height:1.55;font-style:normal;color:var(--zee-diep);margin:.4rem 0 1.2rem}
+/* 4 nov (3): hero rustiger en met meer eenheid. Twee lettertypen met vaste rollen: Cormorant voor de naam en de ene cursieve zin, Jost voor alle lopende tekst. Kleuren teruggebracht: goud alleen voor de eyebrow, bruin voor naam en cursieve zin, inkt voor de tekst. Koper en extra gewichten zijn uit de hero gehaald. De zin Mijn kracht zit in de zuiverheid is weer gewone lopende tekst. Vaste ritmeruimtes. */
+.hero .tekst .eyebrow{margin-bottom:1.1rem}
+.hero h1{margin-bottom:1.1rem}
+.hero .tekst p.kop2.reveal{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.35;color:var(--bruin);margin:0 0 1.8rem;text-wrap:balance}
+.hero .tekst p.lead.reveal{font-family:'Jost',sans-serif;font-style:normal;font-weight:300;font-size:1.04rem;line-height:1.75;color:var(--inkt);margin:0 0 1.05rem}
+.hero .tekst .rij{margin-top:1.8rem}
+/* 4 nov (4): cursieve hero-zin weer goud (zelfde goud als de eyebrow). Vetgedrukte woorden in lopende tekst zijn normaal. Op mobiel staat het bolletje van elke eyebrow op de lijn van de tekst, met de eyebrowtekst er netjes rechts van (ook als die afbreekt). */
+.hero .tekst p.kop2.reveal{color:var(--goud-tekst)}
+main strong,main .diep strong,main .rood strong,main .bruin strong{font-weight:inherit;color:inherit}
+@media(max-width:900px){
+  .eyebrow{padding-left:19px}
+  .eyebrow::before{position:absolute;left:0;top:calc(.875em - 3.5px);margin:0!important}
+}
+
+/* 4 nov (5): de kop Waarom mensen voor mij kiezen staat op elk scherm op één regel. Het lettertype schaalt mee met de schermbreedte (de tekst is ongeveer 12,8 keer de lettergrootte breed). */
+#waarom-kop{white-space:nowrap}
+@media(max-width:900px){
+  #waarom-kop{font-size:min(2.4rem,calc((100vw - 48px) / 12.9))}
+}
+/* 4 nov (6): op mobiel loopt de foto in de sectie Over Jannie helemaal door tot de bovenrand van de sectie, zonder bandje achtergrond erboven. */
+@media(max-width:900px){
+  #over-jannie{padding-top:0}
+}
+/* 4 nov (7): sectie Verbondenheid op mobiel. De foto wordt volledig getoond (eigen verhouding, niets bijgesneden, ook niet het hoofd) en sluit aan tot de bovenrand van de achtergrondsectie. */
+@media(max-width:900px){
+  #overleden{padding-top:0}
+  #overleden .foto.hoog{height:auto}
+  #overleden .foto img{height:auto;object-fit:contain}
+}
+/* 4 nov (8): vaste beeldverhouding van de foto bij Verbondenheid (bron is 1145 bij 1374 pixels). */
+@media(max-width:900px){
+  #overleden .foto img{aspect-ratio:1145/1374;width:100%;height:auto}
+}
+/* 4 nov (9): op tabletbreedte (601 tot 900 px) niet een foto van bijna 900 px hoog. Hoogte begrensd en uitgelijnd op de bovenkant, zodat het hoofd altijd in beeld blijft en alleen onderaan iets wegvalt. */
+@media(min-width:601px) and (max-width:900px){
+  #overleden .foto.hoog{height:640px}
+  #overleden .foto img{aspect-ratio:auto;height:100%;object-fit:cover;object-position:30% 0%}
+}
+/* 4 nov (10): op tabletbreedte de foto bij Verbondenheid altijd uitgelijnd op de bovenkant. */
+@media(min-width:601px) and (max-width:900px){
+  #overleden .foto img{object-position:30% 0% !important}
+}
+/* 4 nov (11): op mobiel en tablet (tot 900 px) sluiten alle foto's in de secties aan op de bovenrand van hun sectie en worden ze volledig getoond in hun eigen verhouding, dus nergens meer een afgesneden hoofd. Op tablet is de hoogte begrensd; dan valt alleen onderaan iets weg. Desktop blijft ongewijzigd. */
+@media(max-width:900px){
+  #ondernemers,#vertellen,#healing,#rode-draad,#misschien{padding-top:0}
+  #voor-jezelf{padding-bottom:48px!important}
+  .split .foto,.split .foto.hoog,.split.gelijk .foto{height:auto!important;min-height:0!important;max-height:700px}
+  .split .foto img,.split.gelijk .foto img{position:static!important;display:block;width:100%;height:auto!important;object-fit:contain!important}
+  #over-jannie .foto img,#vertellen .foto img{aspect-ratio:1/1}
+  #ondernemers .foto img,#overleden .foto img,#natuur .foto img,#misschien .foto img{aspect-ratio:1145/1374}
+  #healing .foto img{aspect-ratio:3/2}
+  #rode-draad .foto img{aspect-ratio:1312/1199}
+}
+/* 4 nov (12): twee zinnen in dezelfde stijl als de cursieve hero-zin: Cormorant cursief in goud. Het gaat om Wat hoort bij jou? (sectie #over-jannie) en Het gaat erom dat jij beter kunt begrijpen waar jij staat. (sectie #ander). */
+#over-jannie p.lead,#ander p.lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;color:var(--goud-tekst)}
+/* 4 nov (13): de eyebrow in de hero (Paragnost · Medium · Healer · Consultant) staat op mobiel op één regel. Kleinere letterspatiëring en een lettergrootte die meeschaalt met de schermbreedte. Desktop blijft ongewijzigd. */
+@media(max-width:600px){
+  .hero .tekst .eyebrow{white-space:nowrap;letter-spacing:.14em;font-size:min(.76rem,3.1vw)}
+}
+/* 4 nov (14): meer goud, in lijn met de gouden bovenrand van de ervaringenkaart. Gouden bovenlijn en dunne gouden rand op alle kaarten, goud in kleine labels en cijfers, gouden afscheiding bij de donkere en rode secties, gouden lijn onder de vaste navigatie en boven de footerlinks. Geen lijnen onder koppen (feedback Giorgio 30 okt). */
+.deur,.pijler,.stappen li,.tarief,.verschil .vkaart,.formwrap{border:1px solid rgba(176,141,79,.4);border-top:2px solid var(--goud)}
+.deur .vraag,.quote small,.review cite,.kort dt,.prijs,.deur .prijs-regel,.stappen li::before{color:var(--goud-tekst)}
+.faq details{border-bottom-color:rgba(176,141,79,.75)}
+.faq details:first-of-type{border-top:2px solid var(--goud)}
+.faq details summary::after,.faq details[open] summary::after{color:var(--goud-tekst)}
+.kort{border-top:2px solid var(--goud)}
+.kort div{border-bottom-color:rgba(176,141,79,.75)}
+.diep,.rood{border-top:3px solid var(--goud);border-bottom:3px solid var(--goud)}
+nav.vast,nav.open{border-bottom:1px solid rgba(176,141,79,.55)}
+footer .voet{border-top:1px solid rgba(227,203,147,.4);padding-top:22px}
+.citaat-band .narrow::before{content:"";display:block;width:64px;height:2px;background:var(--goud);margin:0 auto 28px}
+.stippen button[aria-current="true"]{background:var(--goud);border-color:var(--goud)}
+
+/* 4 nov (15): heel dun, subtiel gouden lijntje onder de menubalk, ook bovenaan de pagina. Na het scrollen iets duidelijker. */
+nav{border-bottom:1px solid rgba(176,141,79,.3)}
+nav.vast,nav.open{border-bottom:1px solid rgba(176,141,79,.5)}
+
+/* 5 nov: echt goud (feedback Deborah: het goud oogde als dik bruin).
+   Oorzaak: --goud #B08D4F en --goud-tekst #8A6528 waren gedempt en bruin, en de gouden lijnen waren 1 tot 2 px met 40 procent dekking.
+   Nu: goudcodes #D4AF37 (warm antiek goud), #C5A059 (zacht goud) en #A37E2C (donker goud), gecombineerd in een lineair verloop voor een metallisch effect.
+   Kleine gouden tekst blijft donker genoeg voor leesbaarheid (#8F6B0A). Bruin (#5C3F33) blijft de achtergrond van de donkere secties. */
+:root{
+  --goud:#D4AF37;
+  --goud-zacht:#C5A059;
+  --goud-diep:#A37E2C;
+  --goud-licht:#EBCC6E;
+  --goud-tekst:#8F6B0A;
+  --goud-lijn:linear-gradient(90deg,#A37E2C 0%,#D4AF37 22%,#F6E7A6 46%,#D4AF37 68%,#C5A059 84%,#A37E2C 100%);
+  --goud-woord:linear-gradient(100deg,#8F6B0A 0%,#A98318 40%,#B8911F 55%,#A37E2C 75%,#8F6B0A 100%);
+}
+/* kaarten: dunne gouden rand en een metallische gouden balk bovenaan */
+.deur,.pijler,.stappen li,.tarief,.verschil .vkaart,.formwrap,.review{
+  border:1px solid rgba(212,175,55,.5);
+  border-top:0;
+  background:var(--goud-lijn) top left/100% 3px no-repeat,#fff;
+}
+.deur.zakelijk,.tarief.zakelijk{
+  border-color:rgba(212,175,55,.5);
+  background:var(--goud-lijn) top left/100% 3px no-repeat,linear-gradient(160deg,#6A4A3B 0%,#5C3F33 60%,#4B3329 100%);
+}
+/* donkere en rode secties: gouden balk boven en onder */
+.diep,.rood{border-top:0;border-bottom:0}
+.diep::before,.diep::after,.rood::before,.rood::after{content:"";position:absolute;left:0;right:0;height:3px;background:var(--goud-lijn);z-index:1;pointer-events:none}
+.diep::before,.rood::before{top:0}
+.diep::after,.rood::after{bottom:0}
+/* navigatie: gouden lijn als verloop */
+nav,nav.vast,nav.open{border-bottom:0}
+nav::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--goud-lijn);opacity:.6;pointer-events:none}
+nav.vast::after,nav.open::after{opacity:1}
+.menuknop{border-color:rgba(212,175,55,.8)}
+/* footer */
+footer{position:relative;border-top:0}
+footer::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--goud-lijn)}
+footer .voet{border-top-color:rgba(235,204,110,.5)}
+/* citaatband, veelgestelde vragen en in het kort */
+.citaat-band .narrow::before{height:3px;width:72px;background:var(--goud-lijn)}
+.faq details{border-bottom-color:rgba(212,175,55,.65)}
+.faq details:first-of-type{border-top:2px solid transparent;border-image:var(--goud-lijn) 1}
+.kort{border-top:2px solid transparent;border-image:var(--goud-lijn) 1}
+.kort div{border-bottom-color:rgba(212,175,55,.6)}
+/* gouden tekst in grote letters: verloop met donkere uiteinden, zodat het goud en niet bruin leest */
+@supports((-webkit-background-clip:text) or (background-clip:text)){
+  .hero .tekst p.kop2.reveal,#over-jannie p.lead,#ander p.lead,.tarief:not(.zakelijk) .prijs b{
+    color:#8F6B0A;
+    background:var(--goud-woord);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+  .stappen li::before{
+    width:fit-content;
+    background:var(--goud-woord);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+}
+
+/* 5 nov: WhatsApp als tweede keuze naast het formulier */
+.alternatief{margin-top:1.8rem;text-align:center}
+.alternatief .of{font-size:.95rem;color:var(--zacht);letter-spacing:.04em;margin:0 0 .9rem}
+.btn.wa{display:inline-flex;align-items:center;justify-content:center;gap:12px}
+.btn.wa svg{width:22px;height:22px;flex:0 0 22px;fill:currentColor}
+.alternatief .meta{max-width:34rem;margin:1rem auto 0}
+
+/* 2. Tekstselectie blokkeren */
+  body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  /* Uitzondering voor formuliervelden en zoekbalk */
+  input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
