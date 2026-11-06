@@ -1,0 +1,79 @@
+/* 404-pagina in dezelfde stijl als de website van Jannie Wekema: ivoor, echt goud, bruin, rode actiekleur. Cormorant voor koppen, Jost voor lopende tekst. */
+:root{
+  --ivoor:#FBF6EC;
+  --mist:#F3E9DA;
+  --zee:#B2302B;
+  --rood-diep:#8E2420;
+  --zee-diep:#4A3025;
+  --bruin:#5C3F33;
+  --inkt:#33261F;
+  --zacht:#6E5E54;
+  --oranje:#D9822B;
+  --goud:#D4AF37;
+  --goud-licht:#EBCC6E;
+  --goud-tekst:#8F6B0A;
+  --goud-lijn:linear-gradient(90deg,#A37E2C 0%,#D4AF37 22%,#F6E7A6 46%,#D4AF37 68%,#C5A059 84%,#A37E2C 100%);
+  --goud-woord:linear-gradient(100deg,#8F6B0A 0%,#A98318 40%,#B8911F 55%,#A37E2C 75%,#8F6B0A 100%);
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{background:var(--ivoor);color:var(--inkt);font-family:'Jost',sans-serif;font-weight:300;font-size:1.04rem;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+img{display:block;max-width:100%}
+h1{font-family:'Cormorant Garamond',serif;font-weight:500;line-height:1.1;color:var(--zee-diep);font-size:clamp(2.4rem,5.6vw,4.2rem);letter-spacing:.01em;text-wrap:balance;margin-bottom:1.1rem}
+p{margin-bottom:1.05rem;text-wrap:pretty}
+.skip{position:absolute;left:-9999px;top:8px;background:#fff;color:var(--zee-diep);padding:10px 16px;z-index:100}
+.skip:focus{left:16px}
+
+header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:14px 28px;background:rgba(251,246,236,.97)}
+header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--goud-lijn)}
+header .naam{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--zee-diep);text-decoration:none;letter-spacing:.03em;white-space:nowrap}
+header .naam:focus-visible,.btn:focus-visible,.snel a:focus-visible{outline:2px solid var(--oranje);outline-offset:3px}
+
+.btn{display:inline-block;background:var(--zee);color:#fff;text-decoration:none;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;font-weight:400;padding:16px 30px;border:1px solid var(--zee);transition:background .3s,color .3s,border-color .3s;-webkit-appearance:none;appearance:none;border-radius:0;text-align:center;line-height:1.5}
+.btn:hover{background:var(--rood-diep);border-color:var(--rood-diep)}
+.btn.uit{background:transparent;color:var(--zee-diep);border-color:var(--goud)}
+.btn.uit:hover{background:var(--goud-licht);border-color:var(--goud-licht);color:var(--zee-diep)}
+header .btn{padding:10px 20px;font-size:.7rem}
+
+main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;position:relative;min-height:100vh;background:linear-gradient(to bottom,rgba(243,233,218,0) 82%,#F3E9DA 100%),linear-gradient(135deg,#FFFAF0 0%,#FBF1DF 55%,#F4E4C8 100%)}
+.tekst{padding:104px 24px 80px max(24px,calc((100vw - 1120px)/2 + 24px))}
+.tekst>*{max-width:540px}
+.eyebrow{font-size:.76rem;letter-spacing:.28em;text-transform:uppercase;color:var(--goud-tekst);font-weight:400;margin-bottom:1.1rem;display:block}
+.eyebrow::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--oranje);margin-right:12px;vertical-align:middle;position:relative;top:-1px}
+.kop2{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.35;color:var(--goud-tekst);margin:0 0 1.8rem;text-wrap:balance}
+@supports((-webkit-background-clip:text) or (background-clip:text)){
+  .kop2{background:var(--goud-woord);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+}
+.rij{display:flex;flex-wrap:wrap;gap:14px;margin-top:1.8rem}
+.snel{font-size:.9rem;color:var(--zacht);margin-top:1.6rem;letter-spacing:.04em}
+.snel a{color:var(--zee);text-underline-offset:4px;white-space:nowrap}
+.snel span{display:inline-block;margin-right:18px}
+.foto{position:relative;overflow:hidden;height:100vh;min-height:600px;-webkit-mask-image:linear-gradient(to left,#000 62%,transparent 100%);mask-image:linear-gradient(to left,#000 62%,transparent 100%)}
+.foto img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+
+footer{background:linear-gradient(160deg,#5C3F33 0%,#4B3329 100%);color:#F3EBE4;padding:44px 0;font-size:.95rem;position:relative}
+footer::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--goud-lijn)}
+footer .binnen{max-width:1120px;margin:0 auto;padding:0 24px}
+footer .naam{font-family:'Cormorant Garamond',serif;font-size:1.9rem;color:#fff;display:block}
+footer .rol{letter-spacing:.2em;text-transform:uppercase;font-size:.75rem;color:var(--goud-licht);margin-bottom:1rem;display:block}
+footer p{margin-bottom:.3rem}
+
+@media(max-width:900px){
+  main{grid-template-columns:minmax(0,1fr);min-height:0;background:linear-gradient(180deg,#FFFAF0 0%,#FBF1DF 55%,#F3E9DA 100%)}
+  .foto{order:-1;height:52vh;min-height:340px;-webkit-mask-image:linear-gradient(to bottom,#000 65%,transparent 100%);mask-image:linear-gradient(to bottom,#000 65%,transparent 100%)}
+  .tekst{padding:0 24px 56px}
+  header{padding:10px 16px}
+  header .naam{font-size:1.15rem}
+}
+@media(max-width:600px){
+  .tekst{padding:0 22px 48px}
+  header .btn{display:none}
+  .btn{white-space:normal;max-width:100%}
+  .rij .btn{flex:1 1 100%}
+  footer .binnen{padding:0 22px}
+}
+@supports(height:100svh){
+  .foto{height:100svh}
+  @media(max-width:900px){.foto{height:52svh}}
+}
