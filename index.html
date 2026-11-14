@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="nl"><head>
 <meta charset="utf-8">
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','functionality_storage':'granted','security_storage':'granted','wait_for_update':500});
+gtag('set','ads_data_redaction',true);
+try{
+  var k=JSON.parse(localStorage.getItem('jw_cookie_keuze')||'null');
+  if(k&&k.stat===true&&k.t&&(Date.now()-k.t)<31536000000){gtag('consent','update',{'analytics_storage':'granted'});}
+}catch(e){}
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
 <meta name="theme-color" content="#5C3F33">
 
@@ -42,6 +52,7 @@
 ]}
 ]}
 </script>
+
 
 
 
@@ -928,9 +939,48 @@
       <a href="#contact">Contact</a>
       <a href="privacyverklaring/">Privacyverklaring</a>
       <a href="algemene-voorwaarden/">Algemene voorwaarden</a>
+      <a href="#" data-cookie-open>Cookie-instellingen</a>
     </div>
   </div>
 </footer>
+
+<div class="ck" id="ck" role="dialog" aria-modal="false" aria-labelledby="ck-kop" hidden>
+  <h2 class="ck-kop" id="ck-kop">Jouw privacy</h2>
+  <p>Deze website gebruikt noodzakelijke cookies om goed te werken. Met jouw toestemming gebruik ik ook Google Analytics om anoniem te meten hoe de website wordt bezocht, zodat ik hem kan verbeteren. Er worden geen advertentiecookies geplaatst. Je kunt je keuze op elk moment wijzigen. Lees meer in de <a href="privacyverklaring/">privacyverklaring</a>.</p>
+  <div class="ck-keuzes" id="ck-keuzes" hidden>
+    <div class="ck-rij"><label for="ck-nodig"><strong>Noodzakelijk</strong><span>Zorgt dat de website veilig en correct werkt. Altijd actief.</span></label><input type="checkbox" id="ck-nodig" checked disabled></div>
+    <div class="ck-rij"><label for="ck-stat"><strong>Statistieken</strong><span>Google Analytics. Meet anoniem welke pagina's worden bezocht, om de website te verbeteren.</span></label><input type="checkbox" id="ck-stat"></div>
+  </div>
+  <div class="ck-knoppen">
+    <button type="button" id="ck-ja">Alles accepteren</button>
+    <button type="button" class="ck-uit" id="ck-nee">Alleen noodzakelijk</button>
+  </div>
+  <button type="button" class="ck-link" id="ck-meer" aria-expanded="false" aria-controls="ck-keuzes">Instellingen</button>
+</div>
+<script>
+(function(){
+  var box=document.getElementById('ck');if(!box)return;
+  var keuzes=document.getElementById('ck-keuzes'),stat=document.getElementById('ck-stat'),meer=document.getElementById('ck-meer'),ja=document.getElementById('ck-ja'),nee=document.getElementById('ck-nee');
+  function lees(){try{var k=JSON.parse(localStorage.getItem('jw_cookie_keuze')||'null');if(k&&k.t&&(Date.now()-k.t)<31536000000)return k;}catch(e){}return null;}
+  function bewaar(s){try{localStorage.setItem('jw_cookie_keuze',JSON.stringify({stat:s,t:Date.now()}));}catch(e){}
+    window.dataLayer=window.dataLayer||[];function g(){dataLayer.push(arguments);}
+    g('consent','update',{'analytics_storage':s?'granted':'denied','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied'});
+    if(!s){var d=location.hostname.split('.');var doms=[location.hostname];if(d.length>2)doms.push(d.slice(-2).join('.'));doms.push('.'+d.slice(-2).join('.'));
+      document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(n==='_ga'||n.indexOf('_ga_')===0||n==='_gid'||n.indexOf('_gat')===0){doms.forEach(function(dm){document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain='+dm;});document.cookie=n+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';}});}
+    box.hidden=true;}
+  function toon(){var k=lees();stat.checked=!!(k&&k.stat);box.hidden=false;}
+  ja.addEventListener('click',function(){bewaar(true);});
+  nee.addEventListener('click',function(){bewaar(false);});
+  meer.addEventListener('click',function(){
+    if(keuzes.hidden){keuzes.hidden=false;meer.setAttribute('aria-expanded','true');meer.textContent='Mijn keuze opslaan';}
+    else{bewaar(stat.checked);}
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!box.hidden&&lees()){box.hidden=true;}});
+  window.openCookieInstellingen=function(){keuzes.hidden=false;meer.setAttribute('aria-expanded','true');meer.textContent='Mijn keuze opslaan';toon();};
+  document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('[data-cookie-open]');if(t){e.preventDefault();window.openCookieInstellingen();}});
+  if(!lees()){toon();}
+})();
+</script>
 
 <div class="scrollknoppen">
   <button type="button" id="sc-up" aria-label="Naar de vorige sectie" hidden>↑</button>
