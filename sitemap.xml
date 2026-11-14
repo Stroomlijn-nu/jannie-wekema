@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://stroomlijn-nu.github.io/jannie-wekema/404-html/</loc>
-    <lastmod>2026-11-06T13:20:12.461Z</lastmod>
+    <loc>https://stroomlijn-nu.github.io/jannie-wekema/privacyverklaring/</loc>
+    <lastmod>2026-11-14T11:06:52.895Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://stroomlijn-nu.github.io/jannie-wekema/</loc>
-    <lastmod>2026-11-06T13:14:28.652Z</lastmod>
+    <lastmod>2026-11-13T16:00:30.974Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://stroomlijn-nu.github.io/jannie-wekema/404-html/</loc>
+    <lastmod>2026-11-06T13:20:12.461Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
