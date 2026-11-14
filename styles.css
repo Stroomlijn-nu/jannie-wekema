@@ -563,3 +563,9 @@ footer .voet{border-top-color:rgba(235,204,110,.5)}
     -ms-user-select: text;
     user-select: text;
   }
+  footer, #contact {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
