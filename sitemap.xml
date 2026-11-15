@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://janniewekema.nl/404-html/</loc>
+    <lastmod>2026-11-15T15:16:14.767Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://janniewekema.nl/</loc>
+    <lastmod>2026-11-15T14:31:24.861Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://janniewekema.nl/privacyverklaring/</loc>
     <lastmod>2026-11-14T13:39:25.175Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
-    <loc>https://janniewekema.nl/</loc>
-    <lastmod>2026-11-14T13:39:05.514Z</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
     <loc>https://janniewekema.nl/algemene-voorwaarden/</loc>
     <lastmod>2026-11-14T13:12:12.914Z</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://janniewekema.nl/404-html/</loc>
-    <lastmod>2026-11-06T13:20:12.461Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
